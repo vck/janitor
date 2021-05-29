@@ -1,0 +1,12 @@
+[Unit]
+Description=Janitor The Cleaning Service
+
+[Service]
+User=root
+Type=simple
+Restart=always
+WorkingDirectory=/home/vicky/git/janitor
+ExecStart=make start-janitor
+
+[Install]
+WantedBy=multi-user.target
