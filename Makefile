@@ -6,3 +6,6 @@ janitor-test:bootstrap
 
 start-janitor:
 	python3 src/janitor.py janitor 
+
+start-janitor-cron:
+	python3 src/janitor.py janitor_cron
