@@ -6,7 +6,7 @@ User=root
 Type=simple
 Restart=always
 WorkingDirectory=/home/vicky/git/janitor
-ExecStart=make start-janitor
+ExecStart=make start-janitor-cron
 
 [Install]
 WantedBy=multi-user.target
