@@ -2,8 +2,10 @@ import os
 import sys
 import glob
 import shutil
+import time
 import fire
-
+import schedule
+from datetime import datetime
 sys.path.append(os.getcwd())
 from src.config import DIR_TO_ARANGE, EXT_INTEREST
 
@@ -33,6 +35,9 @@ def arange_dir(target_dir):
 
 def janitor():
     """main janitor runner"""
+
+    date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"> janitor is running at {date_now}")
     for dir_interest in DIR_TO_ARANGE:
         # clean up dir_interest
         arange_dir(dir_interest)
@@ -50,6 +55,15 @@ def init_test():
             print(f"> creating {os.getcwd()}/test/file-{file_id}.{ext}")
             with open(os.getcwd() + f"/test/file-{file_id}.{ext}", "w") as f:
                 f.write(f"{ext}-{file_id}")
+
+
+def janitor_cron():
+    """cron runner"""
+    schedule.every().hour.do(janitor)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 
 if __name__ == "__main__":
