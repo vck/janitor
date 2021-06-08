@@ -30,7 +30,10 @@ def arange_dir(target_dir):
 
         # move file to its extension directory
         print(f"> moving {file_target} to {target_dir + file_ext}")
-        shutil.move(file_target, target_dir + file_ext)
+        try:
+            shutil.move(file_target, target_dir + file_ext)
+        except Exception as err:
+            continue
 
 
 def janitor():
